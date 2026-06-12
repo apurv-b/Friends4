@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee, Conversations & Chaos ☕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#FFF8F0;
+    --cream:#F5E6D3;
+    --beige:#EAD7C0;
+    --brown:#6F4E37;
+    --pink:#FADADD;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* Floating Coffee Beans */
+
+.bean{
+    position:fixed;
+    font-size:22px;
+    opacity:0.15;
+    animation:float 12s linear infinite;
+    pointer-events:none;
+    z-index:0;
+}
+
+.bean:nth-child(1){left:10%;animation-delay:0s;}
+.bean:nth-child(2){left:35%;animation-delay:3s;}
+.bean:nth-child(3){left:70%;animation-delay:6s;}
+.bean:nth-child(4){left:90%;animation-delay:9s;}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh) rotate(0deg);
+    }
+    100%{
+        transform:translateY(-120px) rotate(360deg);
+    }
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:url('m1.webp') center center/cover;
+    filter:blur(5px) brightness(0.45);
+    transform:scale(1.08);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    color:white;
+    max-width:800px;
+    padding:20px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(3rem,7vw,6rem);
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:1.3rem;
+    margin-bottom:30px;
+}
+
+.scroll-btn{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:40px;
+    text-decoration:none;
+    background:white;
+    color:var(--brown);
+    font-weight:600;
+    transition:.3s;
+}
+
+.scroll-btn:hover{
+    transform:translateY(-4px);
+}
+
+/* SECTION */
+
+section{
+    padding:90px 10%;
+    position:relative;
+    z-index:2;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.8rem;
+    color:var(--brown);
+    margin-bottom:50px;
+    font-family:'Playfair Display',serif;
+}
+
+/* FRIENDS */
+
+.trio{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.friend-card{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.friend-card h3{
+    color:var(--brown);
+    margin-bottom:10px;
+}
+
+/* POLAROIDS */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:45px;
+}
+
+.polaroid{
+    background:white;
+    padding:15px 15px 25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+    transition:.35s;
+}
+
+.polaroid:hover{
+    transform:scale(1.05) rotate(0deg);
+}
+
+.polaroid:nth-child(odd){
+    transform:rotate(-4deg);
+}
+
+.polaroid:nth-child(even){
+    transform:rotate(4deg);
+}
+
+.polaroid img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+}
+
+.caption{
+    text-align:center;
+    margin-top:15px;
+    font-family:'Dancing Script',cursive;
+    font-size:1.5rem;
+    color:var(--brown);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:25px;
+}
+
+.stat{
+    background:var(--cream);
+    padding:35px;
+    text-align:center;
+    border-radius:25px;
+}
+
+.stat h2{
+    font-size:2rem;
+    color:var(--brown);
+}
+
+/* QUOTE */
+
+.quote{
+    text-align:center;
+    background:linear-gradient(
+        135deg,
+        var(--cream),
+        var(--pink)
+    );
+    border-radius:30px;
+    padding:70px 30px;
+}
+
+.quote p{
+    font-size:2rem;
+    line-height:1.6;
+    font-family:'Dancing Script',cursive;
+    color:var(--brown);
+}
+
+/* MEMORY JAR */
+
+.jar{
+    text-align:center;
+}
+
+.jar button{
+    background:var(--brown);
+    color:white;
+    border:none;
+    padding:16px 34px;
+    border-radius:40px;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+.memory-box{
+    margin-top:25px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    max-width:700px;
+    margin-inline:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+}
+
+/* FINAL */
+
+.final{
+    position:relative;
+    min-height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.final::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:url('m7.webp') center center/cover;
+    filter:brightness(0.45);
+}
+
+.final-content{
+    position:relative;
+    z-index:2;
+    max-width:800px;
+    padding:20px;
+}
+
+.final h2{
+    font-family:'Playfair Display',serif;
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.final p{
+    font-size:1.3rem;
+    line-height:1.8;
+}
+
+.footer-tag{
+    margin-top:25px;
+    font-family:'Dancing Script',cursive;
+    font-size:2rem;
+}
+
+/* Animation */
+
+.fade{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:3rem;
+}
+
+.quote p{
+    font-size:1.5rem;
+}
+
+.final h2{
+    font-size:2.2rem;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="bean">☕</div>
+<div class="bean">☕</div>
+<div class="bean">☕</div>
+<div class="bean">☕</div>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Coffee, Conversations & Chaos ☕</h1>
+        <p>
+            Three friends. Countless coffees.
+            Endless conversations.
+        </p>
+
+        <a href="#story" class="scroll-btn">
+            Explore Our Memories ↓
+        </a>
+    </div>
+</section>
+
+<!-- INTRO -->
+
+<section id="story" class="fade">
+    <h2 class="section-title">The Trio ❤️</h2>
+
+    <div class="trio">
+
+        <div class="friend-card">
+            <h3>☕ The Planner</h3>
+            <p>
+                Always had a plan.
+                Rarely followed it.
+            </p>
+        </div>
+
+        <div class="friend-card">
+            <h3>😂 The Chaos Generator</h3>
+            <p>
+                Responsible for 90% of
+                the laughter.
+            </p>
+        </div>
+
+        <div class="friend-card">
+            <h3>😌 The Peace Keeper</h3>
+            <p>
+                Somehow managed to
+                handle the other two.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- GALLERY -->
+
+<section class="fade">
+    <h2 class="section-title">Our Café Days 📸</h2>
+
+    <div class="gallery">
+
+        <div class="polaroid">
+            <img src="m2.webp">
+            <div class="caption">
+                The "we'll study today" meeting.
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="m3.webp">
+            <div class="caption">
+                Ended up discussing life instead.
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="m4.webp">
+            <div class="caption">
+                Another coffee. Another photoshoot.
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="m6.webp">
+            <div class="caption">
+                Laughter louder than the café music.
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="m7.webp">
+            <div class="caption">
+                One of those days we'd relive forever.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- STATS -->
+
+<section class="fade">
+    <h2 class="section-title">Café Statistics ☕</h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2>∞</h2>
+            <p>Cups of Coffee</p>
+        </div>
+
+        <div class="stat">
+            <h2>999+</h2>
+            <p>Selfies Taken</p>
+        </div>
+
+        <div class="stat">
+            <h2>∞</h2>
+            <p>Laughing Fits</p>
+        </div>
+
+        <div class="stat">
+            <h2>?</h2>
+            <p>Actual Studying</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUOTE -->
+
+<section class="fade">
+    <div class="quote">
+        <p>
+            Some friendships don't need grand adventures.<br>
+            Just coffee, conversations,
+            and a little chaos. ❤️
+        </p>
+    </div>
+</section>
+
+<!-- MEMORY JAR -->
+
+<section class="fade">
+    <h2 class="section-title">Memory Jar 🎁</h2>
+
+    <div class="jar">
+
+        <button onclick="randomMemory()">
+            Open Memory Jar ☕
+        </button>
+
+        <div class="memory-box" id="memoryBox">
+            Click the button to unlock a memory...
+        </div>
+
+    </div>
+</section>
+
+<!-- FINAL -->
+
+<section class="final">
+    <div class="final-content">
+
+        <h2>
+            The café visits may become less frequent,
+            but the friendship remains permanent.
+        </h2>
+
+        <p>
+            From 11th grade to 12th grade,
+            from random café visits to unforgettable memories,
+            this story will always have a special place
+            in our hearts.
+        </p>
+
+        <div class="footer-tag">
+            11th Grade ❤️ 12th Grade ❤️ Forever
+        </div>
+
+    </div>
+</section>
+
+<script>
+
+const memories = [
+"Remember when a quick coffee became a 4-hour conversation?",
+"We never left a café on time.",
+"Every meetup somehow became a photoshoot.",
+"We planned to study. The universe had other plans.",
+"The laughter was always free, unlike the coffee.",
+"Three friends. One table. Unlimited memories.",
+"The best moments were never planned."
+];
+
+function randomMemory(){
+    const random =
+    memories[Math.floor(Math.random()*memories.length)];
+
+    document.getElementById("memoryBox").innerHTML = random;
+}
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+document.querySelectorAll('.fade').forEach(el=>{
+    observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
